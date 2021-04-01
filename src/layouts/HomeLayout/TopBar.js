@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   campaignButton: {
     backgroundColor: '#C5D82E',
     color: '#fff',
-    width: '18%',
+    width: '20%',
     margin: theme.spacing(0, 2),
     height: '48px'
   },

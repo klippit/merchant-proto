@@ -41,6 +41,12 @@ export const PATH_APP = {
     ecommerce: path(ROOTS.app, '/dashboard/ecommerce'),
     analytics: path(ROOTS.app, '/dashboard/analytics')
   },
+  sales: {
+    index: path(ROOTS.app, '/sales/list')
+  },
+  payouts: {
+    index: path(ROOTS.app, '/payouts/list')
+  },
   app: {
     mail: {
       root: path(ROOTS.app, '/mail'),

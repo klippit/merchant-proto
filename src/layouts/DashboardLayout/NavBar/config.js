@@ -153,12 +153,12 @@ const navConfig = [
       },
       {
         title: 'Sales',
-        href: PATH_APP.app.calendar,
+        href: PATH_APP.sales.index,
         icon: ICONS.calendar
       },
       {
         title: 'Payouts',
-        href: PATH_APP.management.blog.newPost,
+        href: PATH_APP.payouts.index,
         icon: ICONS.calendar
       }
     ]

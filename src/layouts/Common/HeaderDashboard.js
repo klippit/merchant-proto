@@ -4,7 +4,6 @@ import { isString } from 'lodash';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Link } from '@material-ui/core';
-import { MBreadcrumbs } from 'src/theme';
 
 // ----------------------------------------------------------------------
 
@@ -41,31 +40,8 @@ function HeaderDashboard({
           <Typography variant="h4" gutterBottom>
             {heading}
           </Typography>
-          <MBreadcrumbs links={links} {...other} />
         </Box>
-
         {action && <Box sx={{ flexShrink: 0 }}>{action}</Box>}
-      </Box>
-
-      <Box sx={{ mt: 2 }}>
-        {isString(moreLink) ? (
-          <Link href={moreLink} target="_blank" variant="body2">
-            {moreLink}
-          </Link>
-        ) : (
-          moreLink.map((href) => (
-            <Link
-              noWrap
-              key={href}
-              href={href}
-              variant="body2"
-              target="_blank"
-              sx={{ display: 'table' }}
-            >
-              {href}
-            </Link>
-          ))
-        )}
       </Box>
     </div>
   );
