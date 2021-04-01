@@ -92,12 +92,12 @@ export function renderRoutes(routes = []) {
 
 const routes = [
   // Others Routes
-  {
-    exact: true,
-    guard: GuestProtect,
-    path: PATH_PAGE.auth.login,
-    component: lazy(() => import('src/views/auth/LoginView'))
-  },
+  // {
+  //   exact: true,
+  //   guard: GuestProtect,
+  //   path: PATH_PAGE.auth.login,
+  //   component: lazy(() => import('src/views/auth/LoginView'))
+  // },
   {
     exact: true,
     path: PATH_PAGE.auth.loginUnprotected,

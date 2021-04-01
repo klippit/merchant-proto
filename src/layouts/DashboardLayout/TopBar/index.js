@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Search from './Search';
 import Account from './Account';
 import PropTypes from 'prop-types';
@@ -9,7 +9,22 @@ import Notifications from './Notifications';
 import Settings from 'src/layouts/Common/Settings';
 import menu2Fill from '@iconify-icons/eva/menu-2-fill';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { Box, AppBar, Hidden, Toolbar, IconButton } from '@material-ui/core';
+import {
+  Box,
+  AppBar,
+  Hidden,
+  Toolbar,
+  List,
+  Link,
+  MenuItem,
+  Container,
+  Button,
+  ListItemIcon,
+  ListItemText
+} from '@material-ui/core';
+import PopoverMenu from 'src/components/PopoverMenu';
+import { MIconButton } from 'src/theme';
+import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +41,13 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: DRAWER_WIDTH
     }
   },
+  campaignButton: {
+    backgroundColor: '#C5D82E',
+    color: '#fff',
+    width: '20%'
+  },
   toolbar: {
+    backgroundColor: '#108DAA',
     minHeight: APPBAR_MOBILE,
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(0, 5)
@@ -46,43 +67,35 @@ TopBar.propTypes = {
 
 function TopBar({ onOpenNav, className }) {
   const classes = useStyles();
+  const anchorRef = useRef(null);
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <AppBar className={clsx(classes.root, className)}>
-      <Toolbar className={classes.toolbar}>
-        <Hidden lgUp>
-          <IconButton
-            onClick={onOpenNav}
-            sx={{
-              mr: 1,
-              color: 'text.primary'
-            }}
-          >
-            <Icon icon={menu2Fill} />
-          </IconButton>
-        </Hidden>
-
-        <Search />
-        <Box sx={{ flexGrow: 1 }} />
-
-        <Box
+      <Toolbar disableGutters className={classes.toolbar}>
+        <Container
+          maxWidth="lg"
           sx={{
+            lineHeight: 0,
             display: 'flex',
             alignItems: 'center',
-            '& > *:not(:first-of-type)': {
-              ml: {
-                xs: 0.5,
-                sm: 2,
-                lg: 3
-              }
-            }
+            justifyContent: 'space-between'
           }}
         >
-          <Languages />
-          <Notifications />
-          <Settings />
-          <Account />
-        </Box>
+          <h1 style={{ color: '#FFFFFF' }}>Klippit</h1>
+
+          <Box sx={{ flexGrow: 1 }} />
+
+          <Button
+            underline="none"
+            variant="contained"
+            component={Link}
+            target="_blank"
+            className={clsx(classes.campaignButton)}
+          >
+            New Campaign
+          </Button>
+        </Container>
       </Toolbar>
     </AppBar>
   );

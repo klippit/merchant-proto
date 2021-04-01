@@ -23,8 +23,7 @@ function YearlySales({ className, ...other }) {
   const classes = useStyles();
 
   const chartData = [
-    { name: 'Total Income', data: [10, 41, 35, 151, 49, 62, 69, 91, 48] },
-    { name: 'Total Expenses', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] }
+    { name: 'Total Income', data: [150, 145, 140, 150, 160, 125, 120, 115] }
   ];
   const chartOptions = merge(ApexChartsOption(), {
     legend: { position: 'top', horizontalAlign: 'right' },
@@ -45,7 +44,7 @@ function YearlySales({ className, ...other }) {
 
   return (
     <Card className={clsx(classes.root, className)} {...other}>
-      <CardHeader title="Yearly Sales" subheader="(+43%) than last year" />
+      <CardHeader title="Sales Overview" />
       <Box sx={{ mt: 3, mx: 3 }} dir="ltr">
         <ReactApexChart
           type="area"
