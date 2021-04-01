@@ -53,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2em',
     fontWeight: 'bold'
   },
-  // leftPanel: {
-  //   marginLeft: '7%'
-  // },
   buttonSearch: {
     height: '4em'
   },
