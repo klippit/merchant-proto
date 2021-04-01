@@ -16,13 +16,78 @@ import TopInstalledCountries from './TopInstalledCountries';
 import TopRelatedApplications from './TopRelatedApplications';
 import YearlySales from './../DashboardEcommerceView/YearlySales';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  TableContainer,
+  Card,
+  Typography,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Checkbox,
+  TableBody
+} from '@material-ui/core';
+import DasboardItems from '../../../components/DashboardItems';
+import Scrollbars from 'src/components/Scrollbars';
 
 // ----------------------------------------------------------------------
 
 const useStyles = makeStyles((theme) => ({
-  root: {}
+  root: {},
+  campaignsCard: {
+    margin: theme.spacing(3, 0, 0, 0)
+  }
 }));
+
+const payouts = [
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  },
+  {
+    amount: '$200',
+    account: 'CHASE***********789',
+    date: '4/5/2021'
+  }
+];
 
 // ----------------------------------------------------------------------
 
@@ -33,7 +98,46 @@ function DashboardAppView() {
   return (
     <Page title="Dashboard App | Minimal-UI" className={classes.root}>
       <Container maxWidth="xl">
-        <Grid container spacing={3}>
+        <Grid container>
+          <Grid item sm={6}>
+            <Typography variant="heading" sx={{ color: 'text.primary' }}>
+              <h1>Active Campaigns</h1>
+            </Typography>
+            <Card className={classes.campaignsCard}>
+              <TableContainer sx={{ minWidth: 550, mt: 3 }}>
+                <DasboardItems />
+                <DasboardItems />
+                <DasboardItems />
+                <DasboardItems />
+                <DasboardItems />
+              </TableContainer>
+            </Card>
+          </Grid>
+          <Grid item sm={6}>
+            <Typography variant="heading" sx={{ color: 'text.primary' }}>
+              <h1>Payouts</h1>
+            </Typography>
+            <Card className={classes.campaignsCard}>
+              <div className={classes.root}>
+                <TableContainer sx={{ minWidth: 550, mt: 3 }}>
+                  <Table>
+                    <TableBody>
+                      {payouts.map((payout) => (
+                        <TableRow
+                          key={payout.amount}
+                          className={classes.hideLastBorder}
+                        >
+                          <TableCell>{payout.amount}</TableCell>
+                          <TableCell>{payout.account}</TableCell>
+                          <TableCell>{payout.date}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+            </Card>
+          </Grid>
           <Grid item xs={12} md={12} lg={12}>
             <YearlySales />
           </Grid>
