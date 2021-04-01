@@ -39,8 +39,11 @@ const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 96;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: '#108daa'
+  root: {},
+  campaignButton: {
+    backgroundColor: '#C5D82E',
+    color: '#fff',
+    width: '20%'
   },
   toolbar: {
     height: APP_BAR_MOBILE,
@@ -169,9 +172,9 @@ function TopBar() {
             component={Link}
             target="_blank"
             href={PATH_HOME.purchase}
-            style={{ backgroundColor: '#fff', color: '#108DAA' }}
+            className={clsx(classes.campaignButton)}
           >
-            Join Waitlist
+            New Campaign
           </Button>
 
           <Hidden mdUp>

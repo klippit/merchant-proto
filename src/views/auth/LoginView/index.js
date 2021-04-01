@@ -1,68 +1,104 @@
+import clsx from 'clsx';
 import React from 'react';
+import PropTypes from 'prop-types';
+import useBreakpoints from 'src/hooks/useBreakpoints';
+import { varFadeInDown, MotionInView } from 'src/components/Animate';
+import { alpha, makeStyles } from '@material-ui/core/styles';
+import { Container, Typography, Box } from '@material-ui/core';
 import * as Yup from 'yup';
-import Section from './Section';
 import { useFormik } from 'formik';
-import LoginForm from './LoginForm';
-import { Icon } from '@iconify/react';
-import Page from 'src/components/Page';
-import Logo from 'src/components/Logo';
-import SocialLogin from './SocialLogin';
+import LoginForm from './../../auth/LoginView/LoginForm';
 import useAuth from 'src/hooks/useAuth';
-import { useSnackbar } from 'notistack';
-import { PATH_PAGE } from 'src/routes/paths';
-import closeFill from '@iconify-icons/eva/close-fill';
-import { Link as RouterLink } from 'react-router-dom';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Box,
-  Link,
-  Alert,
-  Hidden,
-  Tooltip,
-  Container,
-  Typography
-} from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import { MIconButton } from 'src/theme';
+import { Icon } from '@iconify/react';
+import closeFill from '@iconify-icons/eva/close-fill';
 
-// ----------------------------------------------------------------------
+const useStyles = makeStyles((theme) => {
+  const isLight = theme.palette.mode === 'light';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
-  },
-  header: {
-    top: 0,
-    zIndex: 9,
-    lineHeight: 0,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    position: 'absolute',
-    padding: theme.spacing(3),
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('md')]: {
-      alignItems: 'flex-start',
-      padding: theme.spacing(7, 5, 0, 7)
-    }
-  },
-  content: {
-    maxWidth: 480,
-    margin: 'auto',
-    display: 'flex',
-    minHeight: '100vh',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: theme.spacing(12, 0)
-  }
-}));
+  const shadowCard = (opacity) =>
+    isLight
+      ? alpha(theme.palette.grey[500], opacity)
+      : alpha(theme.palette.common.black, opacity);
 
-// ----------------------------------------------------------------------
+  const shadowIcon = (color) => {
+    return {
+      filter: `drop-shadow(2px 2px 2px ${alpha(
+        theme.palette[color].main,
+        0.48
+      )})`
+    };
+  };
 
-function LoginView() {
+  return {
+    root: {
+      paddingTop: theme.spacing(15),
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: theme.spacing(15)
+      }
+    },
+    heading: {
+      marginBottom: theme.spacing(10),
+      [theme.breakpoints.up('md')]: {
+        marginBottom: theme.spacing(25)
+      }
+    },
+    card: {
+      maxWidth: 380,
+      minHeight: 440,
+      margin: 'auto',
+      textAlign: 'center',
+      padding: theme.spacing(10, 5, 0),
+      boxShadow: `-40px 40px 80px 0 ${shadowCard(0.4)}`,
+      [theme.breakpoints.up('md')]: {
+        boxShadow: 'none',
+        backgroundColor: theme.palette.grey[isLight ? 200 : 800]
+      }
+    },
+    cardLeft: {
+      [theme.breakpoints.up('md')]: {
+        marginTop: -40
+      }
+    },
+    cardCenter: {
+      [theme.breakpoints.up('md')]: {
+        marginTop: -80,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: `-40px 40px 80px 0 ${shadowCard(0.4)}`,
+        '&:before': {
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1,
+          content: "''",
+          margin: 'auto',
+          position: 'absolute',
+          width: 'calc(100% - 40px)',
+          height: 'calc(100% - 40px)',
+          borderRadius: theme.shape.borderRadiusMd,
+          backgroundColor: theme.palette.background.paper,
+          boxShadow: `-20px 20px 40px 0 ${shadowCard(0.12)}`
+        }
+      }
+    },
+    cardIcon: {
+      width: 40,
+      height: 40,
+      margin: 'auto',
+      marginBottom: theme.spacing(10)
+    },
+    cardIconLeft: shadowIcon('info'),
+    cardIconCenter: shadowIcon('error'),
+    cardIconRight: shadowIcon('primary')
+  };
+});
+
+function Login({ className }) {
   const classes = useStyles();
+  const isDesktop = useBreakpoints('up', 'lg');
   const { method, login } = useAuth();
   const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -110,82 +146,22 @@ function LoginView() {
   });
 
   return (
-    <Page title="Login | Minimal-UI" className={classes.root}>
-      <header className={classes.header}>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
-        <Hidden smDown>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: { md: -2 }
-            }}
-          >
-            Don’t have an account? &nbsp;
-            <Link
-              underline="none"
-              variant="subtitle2"
-              component={RouterLink}
-              to={PATH_PAGE.auth.register}
-            >
-              Get started
-            </Link>
-          </Typography>
-        </Hidden>
-      </header>
-
-      <Hidden mdDown>
-        <Section />
-      </Hidden>
-
-      <Container maxWidth="sm">
-        <div className={classes.content}>
-          <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" gutterBottom>
-                Sign in to Minimal
-              </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>
-                Enter your details below.
-              </Typography>
+    <div className={clsx(classes.root, className)}>
+      <Container maxWidth="lg">
+        <Container maxWidth="sm">
+          <div className={classes.content}>
+            <Box sx={{ mb: 5, mt: 5, display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="h2" style={{ color: '#108daa' }}>
+                  Merchant Login
+                </Typography>
+              </Box>
             </Box>
-            <Tooltip title={method === 'firebase' ? 'Firebase' : 'JWT'}>
-              <Box
-                component="img"
-                src={`/static/icons/${
-                  method === 'firebase' ? 'ic_firebase' : 'ic_jwt'
-                }.png`}
-                sx={{ width: 32, height: 32 }}
-              />
-            </Tooltip>
-          </Box>
-
-          {method === 'firebase' && <SocialLogin />}
-
-          <Alert severity="info" sx={{ mb: 5 }}>
-            Use email : <strong>demo@minimals.cc</strong> / password :
-            <strong>&nbsp;demo1234</strong>
-          </Alert>
-
-          <LoginForm formik={formik} />
-
-          <Hidden smUp>
-            <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-              Don’t have an account?&nbsp;
-              <Link
-                variant="subtitle2"
-                component={RouterLink}
-                to={PATH_PAGE.auth.register}
-              >
-                Get started
-              </Link>
-            </Typography>
-          </Hidden>
-        </div>
+            <LoginForm formik={formik} />
+          </div>
+        </Container>
       </Container>
-    </Page>
+    </div>
   );
 }
-
-export default LoginView;
+export default Login;

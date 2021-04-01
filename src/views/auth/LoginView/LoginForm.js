@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
@@ -17,8 +18,6 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-
-// ----------------------------------------------------------------------
 
 LoginForm.propTypes = {
   formik: PropTypes.object.isRequired
@@ -45,7 +44,7 @@ function LoginForm({ formik }) {
         <TextField
           fullWidth
           type="email"
-          label="Email address"
+          label="name@email.com"
           {...getFieldProps('email')}
           error={
             Boolean(touched.email && errors.email) ||
@@ -102,10 +101,20 @@ function LoginForm({ formik }) {
           type="submit"
           variant="contained"
           pending={isSubmitting}
-          style={{ backgroundColor: '#108daa' }}
         >
           Login
         </LoadingButton>
+        <Box mt={5}>
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            className="mt-5"
+            variant="outlined"
+          >
+            Sign Up for Merchant Account
+          </LoadingButton>
+        </Box>
       </Form>
     </FormikProvider>
   );

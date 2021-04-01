@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => {
     },
     drawerPaper: {
       width: DRAWER_WIDTH,
-      background: theme.palette.background.default
+      background: '#F0F3F4'
     },
     subHeader: {
       ...theme.typography.overline,
@@ -50,8 +50,7 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
       padding: theme.spacing(2, 2.5),
       margin: theme.spacing(1, 2.5, 5),
-      borderRadius: theme.shape.borderRadiusSm,
-      background: theme.palette.grey[isLight ? 200 : 800]
+      borderRadius: theme.shape.borderRadiusSm
     },
     doc: {
       padding: theme.spacing(2.5),
@@ -138,19 +137,12 @@ function NavBar({ isOpenNav, onCloseNav }) {
 
   const renderContent = (
     <Scrollbars>
-      <Box sx={{ px: 2.5, py: 3 }}>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
-      </Box>
-
       <Link
         underline="none"
         component={RouterLink}
         to={PATH_APP.management.user.account}
       >
         <div className={classes.account}>
-          <MyAvatar />
           <Box sx={{ ml: 2 }}>
             <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
               {user.displayName}
@@ -182,37 +174,6 @@ function NavBar({ isOpenNav, onCloseNav }) {
           })}
         </List>
       ))}
-
-      <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-        <div className={classes.doc}>
-          <Box
-            component="img"
-            alt="doc"
-            src="/static/icons/ic_doc.svg"
-            sx={{ width: 36, height: 36, mb: 2 }}
-          />
-          <Typography
-            gutterBottom
-            variant="subtitle1"
-            sx={{ color: 'grey.800' }}
-          >
-            Hi, {user.displayName}
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2, color: 'grey.600' }}>
-            Need help?
-            <br /> Please check our docs
-          </Typography>
-
-          <Button
-            fullWidth
-            to={PATH_DOCS.root}
-            variant="contained"
-            component={RouterLink}
-          >
-            Documentation
-          </Button>
-        </div>
-      </Box>
     </Scrollbars>
   );
 
