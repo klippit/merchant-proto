@@ -104,6 +104,8 @@
     "react-scripts": "4.0.0",
     "react-scroll": "^1.8.1",
     "react-slick": "^0.28.0",
+    "react-social-icons": "^5.0.0",
+    "react-social-media-buttons": "^1.0.8",
     "react-spring": "^8.0.27",
     "react-svg": "^11.0.41",
     "recharts": "^1.8.5",
@@ -112,6 +114,7 @@
     "redux-persist": "^6.0.0",
     "simplebar-react": "^2.3.0",
     "slick-carousel": "^1.8.1",
+    "social-media-icons-react": "^1.1.2",
     "stylis-plugin-rtl": "^2.0.1",
     "yup": "^0.28.5"
   },
