@@ -25,6 +25,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 import { MIconButton } from 'src/theme';
+import AddIcon from '@material-ui/icons/Add';
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,9 @@ const useStyles = makeStyles((theme) => ({
   campaignButton: {
     backgroundColor: '#C5D82E',
     color: '#fff',
-    width: '20%'
+    width: '18%',
+    margin: theme.spacing(0, 2),
+    height: '48px'
   },
   toolbar: {
     height: APP_BAR_MOBILE,
@@ -81,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
         height: APP_BAR_DESKTOP - 20
       }
     }
+  },
+  transparentButton: {
+    backgroundColor: theme.palette.primary.main,
+    border: '1px solid white'
+  },
+  plusIcon: {
+    fontSize: '45px',
+    padding: theme.spacing(0, 2, 0, 0)
   }
 }));
 
@@ -165,6 +176,16 @@ function TopBar() {
           <Box sx={{ flexGrow: 1 }} />
 
           {/* <Hidden mdDown>{renderMenuDesktop}</Hidden> */}
+          <Button
+            underline="none"
+            variant="contained"
+            component={Link}
+            target="_blank"
+            href={PATH_HOME.purchase}
+            className={clsx(classes.campaignButton, classes.transparentButton)}
+          >
+            Logout
+          </Button>
 
           <Button
             underline="none"
@@ -174,6 +195,7 @@ function TopBar() {
             href={PATH_HOME.purchase}
             className={clsx(classes.campaignButton)}
           >
+            <AddIcon className={classes.plusIcon} />
             New Campaign
           </Button>
 

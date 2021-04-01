@@ -2,6 +2,7 @@ import React from 'react';
 import TopBar from './TopBar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import Footer from './../Common/Footer/Footer';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ function HomeLayout({ children }) {
     <div className={classes.root}>
       <TopBar />
       <div className={classes.content}>{children}</div>
+      <Footer />
     </div>
   );
 }
