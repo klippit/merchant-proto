@@ -25,6 +25,7 @@ import {
 import PopoverMenu from 'src/components/PopoverMenu';
 import { MIconButton } from 'src/theme';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
+import AddIcon from '@material-ui/icons/Add';
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +45,9 @@ const useStyles = makeStyles((theme) => ({
   campaignButton: {
     backgroundColor: '#C5D82E',
     color: '#fff',
-    width: '20%'
+    width: '20%',
+    margin: theme.spacing(0, 2),
+    height: '48px'
   },
   toolbar: {
     backgroundColor: '#108DAA',
@@ -55,6 +58,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       minHeight: APPBAR_DESKTOP
     }
+  },
+  transparentButton: {
+    backgroundColor: theme.palette.primary.main,
+    border: '1px solid white',
+    width: '20%'
+  },
+  plusIcon: {
+    fontSize: '45px',
+    padding: theme.spacing(0, 2, 0, 0)
   }
 }));
 
@@ -91,8 +103,19 @@ function TopBar({ onOpenNav, className }) {
             variant="contained"
             component={Link}
             target="_blank"
+            className={clsx(classes.campaignButton, classes.transparentButton)}
+          >
+            Logout
+          </Button>
+
+          <Button
+            underline="none"
+            variant="contained"
+            component={Link}
+            target="_blank"
             className={clsx(classes.campaignButton)}
           >
+            <AddIcon className={classes.plusIcon} />
             New Campaign
           </Button>
         </Container>
