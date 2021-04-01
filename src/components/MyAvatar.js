@@ -15,14 +15,10 @@ function MyAvatar({ className, ...other }) {
 
   return (
     <MAvatar
-      src={user.photoURL}
-      alt={user.displayName}
-      color={user.photoURL ? 'default' : createAvatar(user.displayName).color}
-      className={className}
+      src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg"
+      alt="This is image"
       {...other}
-    >
-      {createAvatar(user.displayName).name}
-    </MAvatar>
+    ></MAvatar>
   );
 }
 

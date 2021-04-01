@@ -13,11 +13,11 @@ const HomeRoutes = {
       path: '/',
       component: lazy(() => import('src/views/auth/LoginView'))
     },
-    // {
-    //   exact: true,
-    //   path: '/',
-    //   component: lazy(() => import('src/views/home/LandingPageView'))
-    // },
+    {
+      exact: true,
+      path: '/test',
+      component: lazy(() => import('src/components/DashboardItems'))
+    },
     {
       exact: true,
       path: '/components',
