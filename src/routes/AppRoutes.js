@@ -20,6 +20,16 @@ const AppRoutes = {
     },
     {
       exact: true,
+      path: PATH_APP.sales.index,
+      component: lazy(() => import('src/views/sales/list'))
+    },
+    {
+      exact: true,
+      path: PATH_APP.payouts.index,
+      component: lazy(() => import('src/views/payouts/list'))
+    },
+    {
+      exact: true,
       path: PATH_APP.general.ecommerce,
       component: lazy(() => import('src/views/general/DashboardEcommerceView'))
     },
