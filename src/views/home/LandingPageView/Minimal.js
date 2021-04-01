@@ -8,6 +8,7 @@ import { Container, Typography, Box } from '@material-ui/core';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import LoginForm from './../../auth/LoginView/LoginForm';
+import Footer from './Footer';
 
 const useStyles = makeStyles((theme) => {
   const isLight = theme.palette.mode === 'light';
