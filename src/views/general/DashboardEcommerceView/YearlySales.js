@@ -44,7 +44,6 @@ function YearlySales({ className, ...other }) {
 
   return (
     <Card className={clsx(classes.root, className)} {...other}>
-      <CardHeader title="Sales Overview" />
       <Box sx={{ mt: 3, mx: 3 }} dir="ltr">
         <ReactApexChart
           type="area"
