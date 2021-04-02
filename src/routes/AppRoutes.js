@@ -20,6 +20,11 @@ const AppRoutes = {
     },
     {
       exact: true,
+      path: PATH_APP.campaigns.index,
+      component: lazy(() => import('src/views/campaigns/list'))
+    },
+    {
+      exact: true,
       path: PATH_APP.sales.index,
       component: lazy(() => import('src/views/sales/list'))
     },
