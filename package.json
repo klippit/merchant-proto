@@ -127,9 +127,6 @@
     "@types/autosuggest-highlight": "^3.1.1",
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/react-scroll": "^1.8.2",
-    "@types/recharts": "^1.8.19",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "2.2.1"
+    "@types/recharts": "^1.8.19"
   }
 }

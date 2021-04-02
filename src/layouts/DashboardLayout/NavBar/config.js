@@ -148,7 +148,7 @@ const navConfig = [
       },
       {
         title: 'Campaigns',
-        href: PATH_APP.app.chat.root,
+        href: PATH_APP.campaigns.index,
         icon: ICONS.chat
       },
       {
