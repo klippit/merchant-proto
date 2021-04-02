@@ -14,6 +14,7 @@ import { useSnackbar } from 'notistack';
 import { MIconButton } from 'src/theme';
 import { Icon } from '@iconify/react';
 import closeFill from '@iconify-icons/eva/close-fill';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => {
   const isLight = theme.palette.mode === 'light';
@@ -98,6 +99,7 @@ const useStyles = makeStyles((theme) => {
 
 function Login({ className }) {
   const classes = useStyles();
+  const history = useHistory();
   const isDesktop = useBreakpoints('up', 'lg');
   const { method, login } = useAuth();
   const isMountedRef = useIsMountedRef();
@@ -131,6 +133,7 @@ function Login({ className }) {
             </MIconButton>
           )
         });
+        history.push('/app/dashboard');
         if (isMountedRef.current) {
           setSubmitting(false);
         }

@@ -26,6 +26,10 @@ import PopoverMenu from 'src/components/PopoverMenu';
 import { MIconButton } from 'src/theme';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
+import { useSnackbar } from 'notistack';
+import useAuth from 'src/hooks/useAuth';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import { useHistory } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -81,6 +85,22 @@ function TopBar({ onOpenNav, className }) {
   const classes = useStyles();
   const anchorRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
+  const history = useHistory();
+  const { user, logout } = useAuth();
+  const isMountedRef = useIsMountedRef();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      if (isMountedRef.current) {
+        history.push('/');
+      }
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to logout', { variant: 'error' });
+    }
+  };
 
   return (
     <AppBar className={clsx(classes.root, className)}>
@@ -104,6 +124,7 @@ function TopBar({ onOpenNav, className }) {
             component={Link}
             target="_blank"
             className={clsx(classes.campaignButton, classes.transparentButton)}
+            onClick={handleLogout}
           >
             Logout
           </Button>
