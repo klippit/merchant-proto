@@ -97,6 +97,17 @@ const typography = {
     lineHeight: 24 / 14,
     fontSize: pxToRem(14),
     textTransform: 'capitalize'
+  },
+  cardHeading: {
+    fontWeight: 400,
+    fontSize: pxToRem(20),
+    lineHeight: pxToRem(28)
+  },
+  cardIcon: {
+    // fontFamily: 'Roboto',
+    fontWeight: 600,
+    fontSize: pxToRem(13),
+    lineHeight: pxToRem(15)
   }
 };
 

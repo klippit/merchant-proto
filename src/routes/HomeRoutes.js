@@ -16,7 +16,7 @@ const HomeRoutes = {
     {
       exact: true,
       path: '/test',
-      component: lazy(() => import('src/components/DashboardItems'))
+      component: lazy(() => import('src/components/BarItems'))
     },
     {
       exact: true,

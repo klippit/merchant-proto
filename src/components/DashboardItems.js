@@ -56,13 +56,13 @@ const DashboardItem = () => {
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item>
-              <Typography gutterBottom variant="subtitle1">
+              <Typography variant="cardIcon">
                 XYZ Campaign
               </Typography>
             </Grid>
             <Grid container>
               <Grid xs={3} item>
-                <Typography variant="body2" gutterBottom>
+                <Typography variant="body2" >
                   1/4/2021
                 </Typography>
               </Grid>
